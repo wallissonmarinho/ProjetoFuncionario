@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:head />
+	
+	<h:body>
+		
+	<h:form>
+		<h>Funcionario: </h>		
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Nome" for="input_nome"/>
+			<h:inputText id="input_nome" value="#{funcionarioBean.funcionario.nome}"/>
+			<h:outputLabel value="Matricula" for="input_matricula"/>
+			<h:inputText id="input_matricula" value="#{funcionarioBean.funcionario.matricula}"/>
+			<h:inputHidden value="#{funcionarioBean.funcionario.id}" />
+		</h:panelGrid>
+		
+		<h:panelGrid columns="2">
+			<h:outputLabel value="PIS" for="input_pis"/>
+			<h:inputText id="input_pis" value="#{funcionarioBean.carteiraDeTrabalho.pis}"/>
+			<h:outputLabel value="Numero" for="input_numero"/>
+			<h:inputText id="input_numero" value="#{funcionarioBean.carteiraDeTrabalho.numero}"/>
+			<h:outputLabel value="Serie" for="input_serie"/>
+			<h:inputText id="input_serie" value="#{funcionarioBean.carteiraDeTrabalho.serie}"/>
+			<h:outputLabel value="UF" for="input_uf"/>
+			<h:inputText id="input_uf" value="#{funcionarioBean.carteiraDeTrabalho.uf}"/>
+			<h:inputHidden value="#{funcionarioBean.carteiraDeTrabalho.id}" />
+		</h:panelGrid>
+		
+		<h:panelGrid columns="3">
+            <h:commandButton value="Cadastrar" action="#{funcionarioBean.cadastrarFuncionario}"/>
+			<h:commandButton value="Atualizar" action="#{funcionarioBean.atualizarFuncionario}"/>
+			<h:commandButton value="Limpar" action="#{funcionarioBean.limparCampo}"/>   
+        </h:panelGrid>
+        
+        <h:dataTable border="1" value="#{funcionarioBean.funcionarios}" var="funcionario">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{funcionario.id} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{funcionario.nome} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Matricula</f:facet>
+				<h:outputText value="#{funcionario.matricula} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">PIS</f:facet>
+				<h:outputText value="#{funcionario.carteiraDeTrabalho.pis} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Numero de Carteira de Trabalho</f:facet>
+				<h:outputText value="#{funcionario.carteiraDeTrabalho.numero} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Serie</f:facet>
+				<h:outputText value="#{funcionario.carteiraDeTrabalho.serie} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">UF</f:facet>
+				<h:outputText value="#{funcionario.carteiraDeTrabalho.uf} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ações</f:facet>
+				<h:commandButton value="Alterar" action="#{funcionarioBean.preparaAtualizacao(funcionario)}"/>
+				<h:commandButton value="Remover" action="#{funcionarioBean.removerFuncionario(funcionario.id)}"/>
+			</h:column>
+		</h:dataTable>
+		
+	</h:form>
+	
+	</h:body>	
+
+</html>
